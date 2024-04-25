@@ -2,7 +2,7 @@ package com.example;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,12 +12,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class BuyerController {
     public final BuyerRepository buyerRepository;
 
-
-    @GetMapping("/")
+    //상품목록보기
+    @GetMapping({"/order", "/"})
     public String list(){
 
-        return "/order/list";
+        return "order/list";
     }
+
+    //로그인
+    @PostMapping("/login")
+    public String login(BuyerRequest.LoginDTO reqDTO, HttpSession session){
+        User sessionUser = BuyerService.Login(reqDTO);
+        session.setAttribute("sessionBuyer", sessionBuyer);
+        return "redirect:/";
+    }
+
+    //회원가입
+    @PostMapping("/join")
+    public String join(BuyerRequest.JoinDTO reqDTO, HttpSession session){
+        User sessionUser = BuyerService.Join(reqDTO);
+        session.setAttribute("sessionBuyer", sessionBuyer);
+        return "buyer/login-form";
+    }
+
+    @GetMapping("/join-form")
+    public String join(){
+        return "buyer/join-form";
+    }
+
 
 
 }
