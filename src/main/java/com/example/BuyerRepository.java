@@ -10,11 +10,4 @@ import org.springframework.stereotype.Repository;
 public class BuyerRepository {
     private final EntityManager em;
 
-    public Buyer findByBuyernameAndPassword(String buyername, String password){
-        Query query =
-                em.createNativeQuery("select * from Buyer where buyername = :buyername and password =:password", Buyer.class);
-        query.setParameter("buyername", buyername);
-        query.setParameter("password", password);
-        return (Buyer) query.getSingleResult();
-    }
 }
