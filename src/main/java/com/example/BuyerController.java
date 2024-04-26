@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class BuyerController {
     public final BuyerRepository buyerRepository;
+    public final BuyerService buyerService;
 
     //상품목록보기
     @GetMapping({"/order", "/"})
@@ -20,25 +21,25 @@ public class BuyerController {
     }
 
     //로그인
-    @PostMapping("/login")
-    public String login(BuyerRequest.LoginDTO reqDTO, HttpSession session){
-        User sessionUser = BuyerService.Login(reqDTO);
-        session.setAttribute("sessionBuyer", sessionBuyer);
-        return "redirect:/";
-    }
+//    @PostMapping("/login")
+//    public String login(BuyerRequest.LoginDTO reqDTO, HttpSession session){
+//        Buyer sessionBuyer = buyerService.login(reqDTO);
+//        session.setAttribute("sessionBuyer", sessionBuyer);
+//        return "redirect:/";
+//    }
 
     //회원가입
     @PostMapping("/join")
-    public String join(BuyerRequest.JoinDTO reqDTO, HttpSession session){
-        User sessionUser = BuyerService.Join(reqDTO);
-        session.setAttribute("sessionBuyer", sessionBuyer);
-        return "buyer/login-form";
+    public String join(BuyerRequest.JoinDTO reqDTO){
+       buyerService.join(reqDTO);
+        return "redirect:/";
     }
 
     @GetMapping("/join-form")
     public String join(){
         return "buyer/join-form";
     }
+
 
 
 
