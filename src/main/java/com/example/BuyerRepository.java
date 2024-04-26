@@ -21,10 +21,12 @@ public class BuyerRepository {
 //    return buyer;
 //    }
 
+    //회원가입
     public void join(BuyerRequest.JoinDTO reqDTO) {
-        Query query = em.createNativeQuery("insert into buyer_tb(buyername, password,created_at) values(?,?,now())");
+        Query query = em.createNativeQuery("insert into buyer_tb(buyername, password, email, created_at) values(?,?,?,now())");
         query.setParameter(1, reqDTO.getBuyername());
         query.setParameter(2, reqDTO.getPassword());
+        query.setParameter(3, reqDTO.getEmail());
         query.executeUpdate();
     }
 }

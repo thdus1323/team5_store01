@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 @Controller
 public class BuyerController {
-    public final BuyerRepository buyerRepository;
     public final BuyerService buyerService;
 
     //상품목록보기
@@ -31,16 +30,13 @@ public class BuyerController {
     //회원가입
     @PostMapping("/join")
     public String join(BuyerRequest.JoinDTO reqDTO){
-       buyerService.join(reqDTO);
-        return "redirect:/";
+       buyerService.wantToJoin(reqDTO);
+        return "redirect:/login-form";
     }
 
     @GetMapping("/join-form")
-    public String join(){
-        return "buyer/join-form";
+    public String joinForm() {
+        System.out.println("왜 안돼!");
+        return "join-form";
     }
-
-
-
-
 }

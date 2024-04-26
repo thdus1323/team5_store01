@@ -15,7 +15,7 @@ public class BuyerService {
 
     //회원가입
     @Transactional
-    public void join(BuyerRequest.JoinDTO reqDTO) {
+    public void wantToJoin(BuyerRequest.JoinDTO reqDTO) {
         buyerRepository.join(reqDTO);
     }
 

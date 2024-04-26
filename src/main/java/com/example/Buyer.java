@@ -18,23 +18,23 @@ public class Buyer {
     private Integer id;
 
     @Column(unique = true, length = 20, nullable = false)
-    private String name;
+    private String buyername;
 
     @Column(nullable = false)
-    private Integer price;
+    private String password;
 
     @Column(nullable = false)
-    private Integer qty;
+    private String email;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     @Builder
-    public Buyer(Integer id, String name, Integer price, Integer qty, LocalDateTime createdAt) {
+    public Buyer(Integer id, String buyername, String password, String email, LocalDateTime createdAt) {
         this.id = id;
-        this.name = name;
-        this.price = price;
-        this.qty = qty;
+        this.buyername = buyername;
+        this.password = password;
+        this.email = email;
         this.createdAt = createdAt;
     }
 }
