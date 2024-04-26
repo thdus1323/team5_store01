@@ -1,7 +1,6 @@
-package com.example;
+package com.example.buyer.product;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,31 +9,23 @@ import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Data
-@Table(name = "buyer_tb")
+@Table(name = "product_tb")
 @Entity
-public class Buyer {
+public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
 
     @Column(unique = true, length = 20, nullable = false)
-    private String buyername;
+    private String name;
 
     @Column(nullable = false)
-    private String password;
+    private Integer price;
 
     @Column(nullable = false)
-    private String email;
+    private Integer qty;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @Builder
-    public Buyer(Integer id, String buyername, String password, String email, LocalDateTime createdAt) {
-        this.id = id;
-        this.buyername = buyername;
-        this.password = password;
-        this.email = email;
-        this.createdAt = createdAt;
-    }
 }
