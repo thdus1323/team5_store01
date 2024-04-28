@@ -1,5 +1,6 @@
 package com.example.buyer.buyer;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class BuyerController {
     private final BuyerService buyerService;
     private final HttpSession session;
-    private final HttpSession SessionBuyer sessionbuyer;
+//    private final BuyerRequest buyerRequest;
+//    private final HttpSession SessionBuyer sessionbuyer;
 
     //상품목록보기
     @GetMapping({"/order"})
@@ -23,7 +25,7 @@ public class BuyerController {
     //로그인
     @PostMapping("/login")
     public String login(BuyerRequest.LoginDTO reqDTO) {
-        SessionBuyer sessionBuyer = buyerService.wantToLogin(reqDTO);
+        Buyer sessionBuyer = buyerService.LoginByNameAndPassword(reqDTO);
         session.setAttribute("sessionBuyer", sessionBuyer);
         return "redirect:/";
     }

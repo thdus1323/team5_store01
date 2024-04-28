@@ -10,8 +10,9 @@ public class BuyerService {
     private final BuyerRepository buyerRepository;
 
     //로그인
-    public void wantToLogin(BuyerRequest.LoginDTO reqDTO) {
+    public Buyer LoginByNameAndPassword(BuyerRequest.LoginDTO reqDTO) {
         buyerRepository.login(reqDTO);
+        return Buyer;
 
     }
 
